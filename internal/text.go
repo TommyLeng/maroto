@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/TommyLeng/maroto/internal/fpdf"
@@ -58,6 +59,9 @@ func (s *text) Add(text string, cell Cell, textProp props.Text) {
 			lineWidth := s.pdf.GetStringWidth(line)
 			_, _, fontSize := s.font.GetFont()
 			textHeight := fontSize / s.font.GetScaleFactor()
+
+			fmt.Printf("accumulateOffsetY: %v\n", accumulateOffsetY)
+			fmt.Printf("accumulateOffsetY: %v\n", textProp.VerticalPadding)
 
 			s.addLine(textProp, cell.X, cell.Width, cell.Y+float64(index)*textHeight+accumulateOffsetY, lineWidth, line)
 			accumulateOffsetY += textProp.VerticalPadding
